@@ -1,0 +1,157 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+
+<ion-content>
+
+  <h1 no-margin>Class Binding </h1>
+  <div padding>
+
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/Ea_6MIIVK0Y" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>Class Binding in Angular 2</h2>
+
+      <p>
+        In this video we will discuss CSS Class binding in Angular with examples.
+      </p>
+
+      <p>
+        For the demos in this video, we will use same example we have been working with so far in this video series. In styles.css
+        file include the following 3 CSS classes. If you recollect styles.css is already referenced in our host page - index.html.
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="50" rows="5">
+          .boldClass{ 
+            font-weight:bold; 
+          } 
+          .italicsClass{ 
+            font-style:italic; 
+          } 
+          .colorClass{ 
+            color:red; 
+          }
+         </textarea>
+      </expandable>
+
+      <p>
+        In app.component.ts, include a button element as shown below. Notice we have set the class attribute of the button element
+        to 'colorClass'.
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="50" rows="5">
+
+          import { Component } from '@angular/core'; 
+          
+          @Component({ 
+            selector: 'my-app', 
+            template: ` <button class='colorClass'>My Button</button> ` 
+          }) 
+          export class AppComponent { 
+
+          }
+         </textarea>
+      </expandable>
+    </div>
+    <div class="fullpage_content">
+      <p>
+        At this point, run the application and notice that the 'colorClass' is added to the button element as expected.
+      </p>
+      <p>
+        Replace all existing css classes with one or more classes
+      </p>
+
+      <p>
+        Modify the code in app.component.ts as shown below. We have introduced a property 'classesToApply' in AppComponent class
+        We have also specified class binding for the button element. The word 'class' is in a pair of square brackets and
+        it is binded to the property 'classesToApply' This will replace the existing css classes of the button with classes
+        specified in the class binding
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="80" rows="5">
+              import { Component } from '@angular/core'; 
+              
+              @Component({ 
+                selector: 'my-app', 
+                template: ` <button class='colorClass' [class]='classesToApply'>My Button</button>` 
+              }) 
+              export class AppComponent { 
+                classesToApply: string = 'italicsClass boldClass'; 
+              }
+           </textarea>
+      </expandable>
+
+      <p>
+        Run the application and notice 'colorClass' is removed and these classes (italicsClass & boldClass) are added.
+      </p>
+
+      <p>
+        Adding or removing a single class : To add or remove a single class, include the prefix 'class' in a pair of square brackets,
+        followed by a DOT and then the name of the class that you want to add or remove. The following example adds boldClass
+        to the button element. Notice it does not remove the existing colorClass already added using the class attribute.
+        If you change applyBoldClass property to false or remove the property altogether from the AppComponent class, css
+        class boldClass is not added to the button element.
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="80" rows="5">
+              import { Component } from '@angular/core'; 
+              
+              @Component({ 
+                selector: 'my-app', 
+                template: ` <button class='colorClass' [class.boldClass]='applyBoldClass'>My Button</button>` 
+              }) 
+              export class AppComponent { 
+                applyBoldClass: boolean = true; 
+              } 
+           </textarea>
+      </expandable>
+
+      <p>
+        With class binding we can also use ! symbol. Notice in the example below applyBoldClass is set to false. Since we have used
+        ! in the class binding the class is added as expected.
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the text">
+        <textarea class="codepart" cols="80" rows="10">
+            import { Component } from '@angular/core'; 
+            
+            @Component({ 
+              selector: 'my-app', 
+              template: ` <button class='colorClass' [class.boldClass]='!applyBoldClass'>My Button</button>` 
+            }) 
+            export class AppComponent { 
+              applyBoldClass: boolean = false; 
+            }
+        </textarea>
+      </expandable>
+
+      <p>
+          You can also removed an existing class that is already applied. Consider the following example. 
+          Notice we have 3 classes (colorClass, boldClass & italicsClass) added to the button element 
+          using the class attribute. The class binding removes the boldClass.
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="80" rows="10">
+            import { Component } from '@angular/core'; 
+            
+            @Component({ 
+              selector: 'my-app', 
+              template: ` <button class='colorClass boldClass italicsClass' [class.boldClass]='applyBoldClass'>My Button</button> ` 
+              }) 
+            export class AppComponent { 
+              applyBoldClass: boolean = false; 
+            }
+        </textarea>
+      </expandable>
+    </div>
+  </div>
+</ion-content>

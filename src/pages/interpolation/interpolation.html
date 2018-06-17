@@ -1,0 +1,172 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+
+<ion-content>
+
+  <h1 no-margin>Interpolation </h1>
+  <div padding>
+  
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/2FkkAqFWRk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+       <h2>Interpolation in Angular 2</h2> 
+
+       <p>
+        In this video we will discuss the concept of Interpolation in Angular. 
+       </p>
+
+       <p>
+        Interpolation is all about data binding. In Angular data-binding can be 
+        broadly classified into 3 categories.
+       </p>
+
+       <p>
+        One way data-bindingFrom Component to View Template <br>
+        One way data-binding - From View Template to Component <br>
+        Two way data-binding - From Component to View Template & From View template to Component
+       </p>
+
+       <p>
+        In this video, we will discuss the first one way data-binding i.e From Component to View 
+        Template. We achieve this using interpolation.
+        We will discuss the rest of the 2 data-binding techniques in our upcoming videos. 
+       </p>
+
+       <p>
+        One way data-binding - From Component to View Template : To display read-only data on a
+        view template we use one-way data binding technique interpolation. With interpolation,
+        we place the component property name in the view template, enclosed in double curly 
+        braces: 
+       </p>
+
+       <expandable showText="See the code" hideText="Hide the code">
+         <textarea class="codepart" rows="10" cols="50">
+          import { Component } from '@angular/core';
+          @Component({ 
+            selector: 'my-app', 
+            template: ` <h1>
+            { firstName }
+          </h1> ` 
+          }) 
+          export class AppComponent { 
+            firstName: string = 'Tom'; 
+          }
+         </textarea>
+       </expandable>
+
+       <p>
+        It is also possible to concatenate a hard-coded string with the property value
+       </p>
+      </div> 
+
+      <div class="fullpage_content">
+       
+        <expandable showText="See the code" hideText="Hide the code">
+         <textarea class="codepart" rows="1" cols="50">
+          <h1>{'Name = ' + firstName}</h1>
+         </textarea>
+       </expandable>
+
+       <p>
+        The above expression displayes "Name = Tom" in the browser.
+       </p>
+
+       <p>
+        You can specify any valid expression in double curly braces. For example you can have 
+       </p>
+
+       <expandable showText="See the code" hideText="Hide the code">
+         <textarea class="codepart" cols="50" rows="2">
+          <h1>{ 10 + 20 + 30 }</h1>
+         </textarea>
+       </expandable>
+
+       <p>
+        The above expression evaluates to 60
+       </p>
+
+       <p>
+        The expression that is enclosed in double curly braces is commonly called as 
+        Template Expression. This template expression can also be a ternary operator 
+        as shown in the example below. Since firstName property has a value 'Tom', 
+        we see it in the browser. 
+       </p>
+
+       <expandable showText="See the code" hideText="hide the code">
+         <textarea class="codepart" cols="50" rows="10">
+            import { Component } from '@angular/core';
+            @Component({ 
+              selector: 'my-app', 
+              template: ` <h1>
+                    {firstName ? firstName : 'No name specified'}}
+                    </h1> ` 
+              }) 
+              export class AppComponent { 
+                firstName: string = 'Tom'; 
+              } 
+         </textarea>
+       </expandable>
+
+       <p>
+          If we set firstName = null as shown below. 
+          The value 'No name specified' is displayed in the browser <br>
+          firstName: string = null;
+       </p>
+
+       <p>
+          You can also use interpolation to set [img] src property
+       </p>
+
+       <expandable showText="See the code" hideText="Hide the code">
+         <textarea class="codepart" cols="50" rows="10">
+            import { Component } from '@angular/core'; 
+            
+            @Component({ 
+              selector: 'my-app', 
+              template: `<div>
+                    <h1>{pageHeader}}</h1> 
+                    <img src='{{imagePath}}'/> 
+              </div>` 
+            }) 
+            
+            export class AppComponent { 
+              pageHeader: string = 'Employee Details'; 
+              imagePath: string = 'http://pragimtech.com/images/logo.jpg'; 
+            } 
+         </textarea>
+       </expandable>
+
+       <p>
+          We can also call class methods using interpolation as shown below.
+       </p>
+
+       <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" rows="10" cols="50">
+            import { Component } from '@angular/core'; 
+
+            @Component({ 
+                selector: 'my-app', 
+                template: `<div> 
+                      <h1>{'Full Name = ' + getFullName()}}
+                      </h1> 
+                    </div>` 
+              }) 
+
+              export class AppComponent { 
+                firstName: string = 'Tom'; 
+                lastName: string = 'Hopkins'; 
+                getFullName(): string { 
+                  return this.firstName + ' ' + this.lastName; 
+              } } 
+        </textarea>
+       </expandable>
+       <p>
+          Output : Full Name = Tom Hopkins
+       </p>
+      </div>
+  </div>
+</ion-content>

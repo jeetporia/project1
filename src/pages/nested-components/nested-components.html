@@ -1,0 +1,132 @@
+<ion-header>
+    <common-header>Angular 2</common-header>
+  </ion-header>
+  
+  
+  <ion-content>
+  
+    <h1 no-margin>Angular 2 Nested Components </h1>
+    <div padding>
+    
+      <div class="resp-container">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/BPLjY-9k-zE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+  
+      <div class="content1">
+         <!-- <h2>Angular 2 Nested Components</h2>  -->
+        <p>
+            In this video we will discuss nesting angular components
+            i.e including a component inside another component. 
+        </p> 
+        
+        <p>
+            Angular 2 is all about components. A component in Angular allows us to create a 
+            reusable UI widget. A component can be used by any other component. Let's look 
+            at a simple example of nesting a component inside another component.
+        </p>
+
+        <p>
+            Create a page that displays Employee details. This page should be composed of 
+            2 angular components<br>
+        </p>
+            <h2>App Component</h2>
+        <p>    
+            This component is the root component and displays just the page header. 
+        </p>
+            <h2>Employee Component</h2>
+        </div>
+
+        <div class="fullpage_content">
+        <p>
+            This component is the child component and displays the Employee details table. 
+            This child component will be nested inside the root AppComponent.
+        </p>
+
+        <p>
+            Step 1 : Right click on the "App" folder and add a new folder. Name it "employee". 
+            We will create our EmployeeComponent in this folder.
+        </p>
+
+        <p>
+            Step 2 : Right click on the "employee" folder and add a new HTML page. 
+            Name it employee.component.html. Copy and paste the following HTML
+        </p>
+
+        <expandable showText="See the code" hideText="Hide the code">
+            <textarea class="codepart" cols="50" rows="10">
+                <table>
+                   <tr>
+                      <td>First Name</td> 
+                      <td>{firstName}</td> 
+                    </tr>
+                    <tr> 
+                      <td>Last Name</td> 
+                      <td>{lastName}</td> 
+                    </tr> 
+                    <tr> 
+                      <td>Gender</td> 
+                      <td>{gender}</td> 
+                    </tr> 
+                    <tr> 
+                      <td>Age</td> 
+                      <td>{age}</td> 
+                    </tr> 
+                  </table>
+            </textarea>
+        </expandable>
+
+        <p>
+            Step 3 : Right click on the "employee" folder and add a new TypeScript file. 
+            Name it employee.component.ts. Copy and paste the following code in it. 
+            At this point we have our child component EmployeeComponent created. 
+            Next let's create the root component - AppComponent.
+        </p>
+
+        <expandable showText="See the code" hideText="Hide the code">
+          <textarea class="codepart" rows="8" cols="50">
+              import { Component } from '@angular/core'; 
+              @Component({ 
+                selector: 'my-employee', 
+                templateUrl: 'app/employee/employee.component.html' 
+              }) 
+              export class EmployeeComponent { 
+                firstName: string = 'Tom'; 
+                lastName: string = 'Hopkins';
+                 gender: string = 'Male'; 
+                 age: number = 20; 
+              }
+          </textarea>
+        </expandable>
+        <p>
+            Step 4 : We are going to use the root component to just display the page header.
+            So in "app.component.ts" file, include the following code. 
+            Notice, since the View Template HTML is just 3 lines we have used an inline 
+            template instead of an external template. Angular2 recommends to extract
+            templates into a separate file, if the view template is longer than 3 lines. 
+        </p>
+
+        <expandable showText="See the code" hideText="hide the code">
+          <textarea class="codepart" cols="50" rows="8">
+              import { Component } from '@angular/core'; 
+              @Component({ 
+                selector: 'my-app', 
+                template: `<div> 
+                <h1>{{pageHeader}}</h1>
+                </div>`
+               }) 
+               export class AppComponent { 
+                 pageHeader: string = 'Employee Details';
+              }
+          </textarea>
+        </expandable>
+
+        <p>
+            At this point if we run the application, we only see the page header - 
+            "Employee Details", but not the table which has the employee details. 
+            To be able to display employee details table along with the page header, 
+            we will have to nest EmployeeComponent inside AppComponent. 
+        </p>
+          </div>
+    </div>
+  </ion-content>
+  

@@ -1,0 +1,101 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+<ion-content>
+
+  <h1 no-margin>Custom Pipes in Angular 2 </h1>
+  <div padding>
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/XRplR3Srr1k" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>What is Custom Pipes in Angular 2 </h2>
+      <p>
+        In this video we will discuss creating a Custom Pipe in Angular. Let us understand this with an example.
+      </p>
+      <p>
+        Here is what we want to do. Depending on the gender of the employee, we want to display Mr. or Miss. prefixed to the employee
+        name.
+      </p>
+
+      <p>
+        Step 1 : To achieve this let's create a custom pipe called employeeTitlePipe. Right click on the "employee" folder and add
+        a new TypeScript file. Name it "employeeTitle.pipe.ts". Copy and paste the following code.
+      </p>
+
+      <h2>Code Explanation</h2>
+      <p>
+        1. Import Pipe decorator and PipeTransform interface from Angular core
+      </p>
+
+      <p>
+        2. Notice "EmployeeTitlePipe" class is decorated with Pipe decorator to make it an Angular pipe
+      </p>
+    </div>
+
+    <div class="fullpage_content">
+      <p>
+        3. name property of the pipe decorator is set to employeeTitle. This name can then be used on any HTML page where you want
+        this pipe functionality.
+      </p>
+
+      <p>
+        4. EmployeeTitlePipe class implements the PipeTransform interface. This interface has one method transform() which needs
+        to be implemented.
+      </p>
+
+      <p>
+        5. Notice the transform method has 2 parameters. value parameter will receive the name of the employee and gender parameter
+        receives the gender of the employee. The method returns a string i.e Mr. or Miss. prefixed to the name of the employee
+        depending on their gender.
+      </p>
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="65" rows="10">
+            import { Pipe, PipeTransform } from '@angular/core'; 
+            
+            @Pipe({ 
+              name: 'employeeTitle' 
+            }) 
+            export class EmployeeTitlePipe implements PipeTransform { 
+              transform(value: string, gender: string): string { 
+                if (gender.toLowerCase() == "male") 
+                   return "Mr." + value; 
+                else 
+                   return "Miss." + value; } 
+            }
+        </textarea>
+      </expandable>
+
+      <p>
+        Step 2 : Register "EmployeeTitlePipe" in the angular module where we need it. In our case we need it in the root module.
+        So in app.module.ts file, import the EmployeeTitlePipe and include it in the "declarations" array of NgModule decorator
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" cols="80" rows="10">
+            import { EmployeeTitlePipe } from './employee/employeeTitle.pipe' 
+            
+            @NgModule({ 
+              imports: [BrowserModule], 
+              declarations: [AppComponent, EmployeeComponent, EmployeeListComponent, EmployeeTitlePipe], 
+              bootstrap: [AppComponent] 
+            }) 
+            
+            export class AppModule { }
+        </textarea>
+      </expandable>
+
+      <p>
+        Step 3 : In "employeeList.component.html" use the "EmployeeTitlePipe" as shown below. Notice we are passing employee gender
+        as an argument for the gender parameter of our custom pipe. Employee name gets passed automatically.
+      </p>
+     
+      <p>
+        employee.name | employeeTitle:employee.gender
+      </p>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,120 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+<ion-content>
+  <h1 no-margin>HTML attributes vs DOM Property </h1>
+  <div padding>
+
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/Ut-ATm23_Pg" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>HTML Attribute vs DOM property</h2>
+
+      <p> In this video we will discuss the difference between HTML attribute and DOM property.</p>
+
+      <h2>
+        What is DOM
+      </h2>
+
+      <p>
+        DOM stands for Document Object Model. When a browser loads a web page, the browser creates a Document Object Model of that
+        page.
+      </p>
+
+      <p>
+        In simple terms you can think of the DOM as an application programming interface (API) for HTML, and we can use programming
+        languages like JavaScript, or JavaScript frameworks like Angular to access and manipulate the HTML using their corresponding
+        DOM objects.
+      </p>
+
+      <p>
+        In other words DOM contains the HTML elements as objects, their properties, methods and events and it is a standard for accessing,
+        modifying, adding or deleting HTML elements.
+      </p>
+
+    </div>
+
+    <div class="fullpage_content">
+      <p>
+        In the previous 2 videos we discussed interpolation and property binding in Angular.
+      </p>
+
+      <p>
+        Interpolation Example
+      </p>
+
+      <textarea class="codepart" cols="50" rows="1">
+        <button disabled ={isDisabled}}> Click </button>
+      </textarea>
+
+      <p>
+        Property Binding Example
+      </p>
+
+      <textarea class="codepart" cols="50" rows="1">
+        <button [disabled] = 'isDisabled'>Click me </button>
+      </textarea>
+
+      <p>
+        If you notice the above 2 examples, it looks like we are binding to the Button's disabled attribute. This is not true. We
+        are actually binding to the disabled property of the button object. Angular data-binding is all about binding to
+        DOM object properties and not HTML element attributes.
+      </p>
+
+      <p>
+        What is the difference between HTML element attribute and DOM property Attributes are defined by HTML, where as properties
+        are defined by the DOM. Attributes initialize DOM properties. Once the initialization complete, the attributes job
+        is done.
+      </p>
+
+      <p>
+        Property values can change, where as attribute values can't.
+      </p>
+
+      <p>
+        Let's prove this point - Property values change, but the attribute values don't with an example
+      </p>
+
+      <p>
+        In the example below, we have set the value attribute of the input element to Tom.
+      </p>
+  
+    
+    <textarea class="codepart" cols="50" rows="1">
+      <input id='inputid' type="text" value="Tom">
+    </textarea>
+
+    <p>
+      At this point run the web page and in the textbox you will see 'Tom' as the value
+    </p>
+
+    <p>
+      Launch the browser developer tools
+    </p>
+
+    <p>
+      On the 'Console' tab, use the getattribute() method and value property of the input element to get the 
+      attribute and property values. Notice at the moment both have the value 'Tom'
+    </p>
+
+    <p>
+      Change the value in the textbox to Mary.
+    </p>
+
+    <p>
+      Notice now, when we query for the attribute and property values, the attribute value is still 
+      Tom but the property value is Mary. 
+      So this proves the point - Property values change, where as attribute values don't.
+    </p>
+
+    <p>
+      So it is important to keep in mind that, HTML attributes and the DOM properties are different things. 
+      Angular binding works with properties and events, and not attributes. 
+      The role of attributes is to initialize element properties and their job is done.
+    </p>
+  </div>
+  </div>
+</ion-content>

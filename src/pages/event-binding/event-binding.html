@@ -1,0 +1,150 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+
+<ion-content>
+
+  <h1 no-margin>Event Binding </h1>
+  <div padding>
+
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/g8ofqqT_UAM" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>Event Binding in Angular 2</h2>
+
+      <p>
+          In this video we will discuss Event Binding in Angular with examples.
+      </p>
+
+      <p>
+          The following bindings that we have discussed so far in this video series flow data in one direction 
+          i.e from a component class property to an HTML element property.
+      </p>
+      <p>
+          1. Interpolation <br>
+          2. Property Binding <br> 
+          3. Attribute Binding<br> 
+          4. Class Binding <br>
+          5. Style Binding
+      </p>
+      <p>
+          How about flowing data in the opposite direction i.e from an HTML element to a component. 
+          When a user performs any action like clicking on a button, hovering over an element, 
+          selecting from a dropdownlist, typing in a textbox etc, then the corresponding event 
+          for that action is raised. We need to know when user performs these actions. 
+          We can use angular event binding to get notified when these events occur.
+      </p>
+    </div>
+    <div class="fullpage_content">
+        <expandable showText="See the code" hideText="Hide the code">
+          <textarea class="codepart" cols="50" rows="1">
+              <button (click)="onClick()">Click me</button>
+          </textarea>
+        </expandable> 
+        
+    <p>
+        With event binding we can also use the on- prefix alternative as shown below. This is known as the canonical form
+    </p>
+
+    <expandable showText="See the code" hideText="Hide the text">
+      <textarea class="codepart" cols="50" rows="1">
+          <button on-click="onClick()">Click me</button>
+      </textarea>
+    </expandable>
+    
+    <h2>
+      Event Binding Example
+    </h2>
+
+    <expandable showText="See the code" hideText="Hide the text">
+      <textarea class="codepart" cols="50" rows="10">
+          import { Component } from '@angular/core'; 
+          
+          @Component({ 
+            selector: 'my-app', 
+            template: `<button (click)='onClick()'>
+                            Click me
+                        </button>` 
+          }) 
+          export class AppComponent { 
+            onClick(): void { 
+              console.log('Button Clicked'); 
+            } 
+          } 
+      </textarea>
+    </expandable>
+
+    <p>
+        Every time we click the button, 'Button Clicked' message is logged to the console.
+        You can see this message under the Console tab, in the browser developer tools.
+    </p>
+
+    <p>
+        Another Example : Initially when the page loads we want to display only the First 
+        Name and Last of Employee. We also want to display "Show Details" button.
+    </p>
+    
+    <p>
+        When we click "Show Details" button, we want to display "Gender" and "Age" as well. 
+        The text on the button should be changed to "Hide Details". When we click "Hide Details" button, 
+        "Gender" and "Age" should be hidden and the button text should be changed to "Show Details".
+    </p>
+
+    <p>
+        To achieve this we will make use of event binding in Angular. 
+        We will also make use of one of the structural directives "ngIf" in angular.
+    </p>
+
+    <p>
+        Code in employee.component.ts : Notice we have introduced "showDetails" boolean property. 
+        The default value is false, so when the page first loads, we will have "Gender" and "Age" 
+        hidden.
+        We also have a method, toggleDetails(), which toggles the value of showDetails. 
+    </p>
+
+    <expandable showText="See the code" hideText="Hide the code">
+      <textarea class="codepart" rows="10" cols="50">
+          import { Component } from '@angular/core'; 
+          
+          @Component({ 
+            selector: 'my-employee', 
+            templateUrl: 'app/employee/employee.component.html', 
+            styleUrls: ['app/employee/employee.component.css'] 
+          }) 
+          export class EmployeeComponent { 
+            columnSpan: number = 2; 
+            firstName: string = 'Tom'; 
+            lastName: string = 'Hopkins'; 
+            gender: string = 'Male'; 
+            age: number = 20; 
+            showDetails: boolean = false; 
+          toggleDetails(): void { 
+            this.showDetails = !this.showDetails; 
+            } 
+          } 
+      </textarea>
+    </expandable>
+    
+    <p>
+        Code in employee.component.html : 
+    </p>
+
+    <p>
+        Notice the click event of the button is binded to toggleDetails() method To dynamicall 
+        change the text on the button, 
+        <br>
+        we are using ternary operator - [showDetails ? 'Hide' : 'Show']
+        Details We used ngIf structural directive on "Gender" and "Age" [tr] elements 
+        The * prefix before a directive indicates, it is a structural directive Besides ngIf, 
+        there are other structural directives which we will discuss in our upcoming videos 
+        The ngIf directive conditionally adds or removes content from the DOM based on 
+        whether or not an expression is true or false If "showDetails" is true, 
+        "Gender" and "Age" [tr] elements are added to the DOM, else removed
+    </p>
+    </div>
+  </div>
+</ion-content>

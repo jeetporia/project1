@@ -1,0 +1,144 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+<ion-content class="mastercolor">
+
+  <h1 no-margin>Components Input Properties in Angular 2 </h1>
+  <div padding>
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/g7BB8hn6YR0" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>Components Input Property</h2>
+
+      <p>
+        In this video we will discuss how to pass data from the container component to the nested component using input properties.
+      </p>
+
+      <p>
+        At the moment the count of employees displayed against each radio button are hard-coded with in the EmployeeCountComponent.
+      </p>
+
+      <p>
+        Here is the code in employeeCount.component.ts file : Notice the values for the 3 properties (all, male, female) are hard-coded.
+        We want the values for these 3 properties to be passed from the container component i.e EmployeeListComponent.
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" cols="65" rows="5">
+          export class EmployeeCountComponent { 
+            all: number = 10; 
+            male: number = 5; 
+            female: number = 5;      
+          }
+        </textarea>
+      </expandable>
+    </div>
+
+    <div class="fullpage_content">
+      <p>
+        Convert a component property to an input property using @Input decorator : To be able to pass the values for these 3 properties
+        from the container component to the nested component we need to decorate the properties with @Input() decorator.
+        Decorating a property with @Input() decorator makes the property an input property. Notice I have also removed the
+        default hard-coded values, as we will be passign the values from the parent component i.e EmployeeListComponent.
+        To be able to use the @Input() decorator we will have to first import it from @angular/core.
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" rows="10" cols="65">
+          import { Component, Input } from '@angular/core'; 
+          
+          @Component({ 
+            selector: 'employee-count', 
+            templateUrl: 'app/employee/employeeCount.component.html', 
+            styleUrls: ['app/employee/employeeCount.component.css'] 
+          }) 
+          
+          export class EmployeeCountComponent { 
+            @Input() all: number; 
+            @Input() male: number; 
+            @Input() female: number; 
+          }
+         </textarea>
+      </expandable>
+
+      <p>
+        Passing data from the parent component to the child component : There are 2 modifications that we need to do in EmployeeListComponent
+        to be able to pass values from the parent component i.e EmployeeListComponent to the child component i.e EmployeeCountComponent.
+        The first change is in EmployeeListComponent TypeScript file as shown below. Notice I have introduced 3 methods that
+        return male employees count, female employees count and total employees count.
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" cols="65" rows="10">
+          getTotalEmployeesCount(): number { 
+            return this.employees.length; 
+          } 
+          
+          getTotalMaleEmployeesCount(): number { 
+            return this.employees.filter(e =] e.gender === "Male").length; 
+          } 
+          
+          getTotalFemaleEmployeesCount(): number { 
+            return this.employees.filter(e =] e.gender === "Female").length; 
+          }
+        </textarea>
+      </expandable>
+
+      <p>
+        Please note : In the filter method we are using tripple equals (===) instead of double equals (==). The table below explains
+        single, double and tripple equals in TypeScript.
+      </p>
+
+      <p>
+        Operator use to :
+        <br> = Assign a value
+        <br> == Compare two values
+        <br> === Compare two values and their types
+      </p>
+
+      <p>
+        The second change is in the view template of EmployeeListComponent i.e employeeList.component.html file. Notice with in [employee-count]
+        directive we are using property binding to bind the properties (all, male, female) of the nested component (EmployeeCountComponent)
+        with the 3 methods in the container component (EmployeeListComponent).
+      </p>
+
+      <p>
+        <textarea class="codepart" cols="85" rows="5">
+            <employee-count 
+                [all]="getTotalEmployeesCount()" 
+                [male]="getMaleEmployeesCount()" 
+                [female]="getFemaleEmployeesCount()">
+            </employee-count>
+        </textarea>
+      </p>
+
+      <p>
+        At this point At this point, save all the changes and run the application and we see the correct count of employee next to
+        each radio button.
+      </p>
+
+      <p>
+        Now, let's add the following new employee object to the to the employees array in EmployeeListComponent.
+        <br>
+        <textarea class="codepart" cols="85" rows="2">
+               { code: 'emp106', name: 'Steve', gender: 'Male', annualSalary: 7700.481, dateOfBirth: '11/18/1979' }
+          </textarea>
+      </p>
+
+      <p>
+        Save changes and reload the web page and notice that All count and Male count is increased by 1 as expected.
+      </p>
+
+      <p>
+        At the moment when we click the radio buttons nothing happens. In our next video we will discuss how to pass data from the
+        child component to the parent component i.e when a radio button checked event is raised in the child component, we
+        want to know about it in the parent component so we can react and decide which employees to show in the table depending
+        on the selection of the radio button.
+      </p>
+    </div>
+  </div>
+</ion-content>

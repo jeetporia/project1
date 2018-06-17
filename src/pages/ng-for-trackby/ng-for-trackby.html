@@ -1,0 +1,291 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+<ion-content>
+
+  <h1 no-margin>Angular ngFor trackby </h1>
+  <div padding>
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dEIg-PR4Tew" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>Angular ngFor trackby</h2>
+      <p>
+        In this video we will discuss
+        <br> 1. Using trackyBy with ngFor directive
+        <br> 2. How to get the index of an item in a collection
+        <br> 3. Identifying the first and the last elements in a collection
+        <br> 4. Identifying even and odd elements in a collection
+      </p>
+      <h2>Using trackyBy with ngFor directive : </h2>
+
+      <p>
+        ngFor directive may perform poorly with large lists A small change to the list like, adding a new item or removing an existing
+        item may trigger a cascade of DOM manipulations
+      </p>
+
+      <p>
+        For example, consider this code in employeeList.component.ts
+      </p>
+
+      <p>
+        The constructor() initialises the employees property with 4 employee objects getEmployees() method returns another list of
+        5 employee objects (The 4 existing employees plus a new employee object)
+      </p>
+
+      <p>
+        Now look at this code in employeeList.component.html
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" rows="10" cols="65">
+          <table> 
+            <thead> 
+              <tr> 
+              </tr> 
+            </thead> 
+            <tbody> 
+              <tr *ngFor='let employee of employees'> 
+              </tr> 
+              <tr *ngIf="!employees || employees.length==0">
+                <td colspan="5"> No employees to display 
+
+                </td> 
+              </tr> 
+            </tbody> 
+          </table> 
+          <br> 
+          
+          <button (click)='getEmployees()'>Refresh Employees</button>
+
+        </textarea>
+      </expandable>
+    </div>
+    <div class="fullpage_content">
+      <p>
+        1. At the moment we are not using trackBy with ngFor directive
+        <br> 2. When the page initially loads we see the 4 employees
+        <br> 3. When we click "Refresh Employees" button we see the fifth employee as well
+        <br> 4. It looks like it just added the additional row for the fifth employee.
+        <br> That's not true, it effectively teared down all the [tr] and [td] elements of all the employees and recreated them.
+        <br> 5. To prove this launch browser developer tools by pressing F12.
+        <br> 6. Click on the "Elements" tab and expand the [table] and then [tbody] elements
+        <br> 7. At this point click the "Refresh Emplyees" button and you will notice all the [tr] elements are briefly highlighted
+        indicating they are teared down and recreated.
+        <br>
+      </p>
+
+      <p>
+        This happens because Angular by defualt keeps track of objects using the object references. When we click the "Refresh Employees"
+        button we get different object references and as a result Angular has no choice but to tear down all the old DOM
+        elements and insert the new DOM elements.
+      </p>
+
+      <p>
+        Angular can avoid this churn with trackBy. The trackBy function takes the index and the current item as arguments and returns
+        the unique identifier by which that item should be tracked. In our case we are tracking by Employee code. Add this
+        method to employeeList.component.ts.
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="65" rows="5">
+                trackByEmpCode(index: number, employee: any): string 
+                { 
+                  return employee.code; 
+                }
+            </textarea>
+      </expandable>
+
+      <p>
+        Make the following change in employeeList.component.html : Notice along with ngFor we also specified trackBy
+      </p>
+
+      <textarea class="codepart" cols="65" rows="1">
+              <tr *ngFor='let employee of employees; trackBy:trackByEmpCode'></tr>
+          </textarea>
+
+      <p>
+        At this point, run the application and lauch developer tools. When you click "Refresh Employees" first time, only the the
+        row of the fifth employee is highlighted indicating only that[tr] element is added. On subsequent clicks, nothing
+        is highlighted meaning none of the [tr] elements are teared down or added as the employees collection has not changed.
+        Even now we get different object references when we click "Refresh Employees" button, but as Angular is now tracking
+        employee objects using the employee code instead of object references, the respective DOM elements are not affected.
+      </p>
+
+      <p>
+        How to get the index of an item in a collection : In the example below, we are using the index property of the NgFor directive
+        to store the index in a template input variable "i". The variable is then used in the [td] element where we want
+        to display the index. We used the let keyword to create the template input variable "i".
+      </p>
+
+      <p>
+        The index of an element is extremely useful when creating the HTML elements dynamically. We will discuss creating HTML elements
+        dynamically in our upcoming videos
+      </p>
+
+      <p>
+        <textarea class="codepart" cols="65" rows="2">
+            <tr *ngFor='let employee of employees; let i=index'>
+        </textarea>
+      </p>
+      <p>
+        Identifying the first and the last element in a collection : Use the first and last properties of the ngFor directive to
+        find if an element is the first or last element respectively.
+      </p>
+
+      <p>
+        Identifying even and odd element in a collection : This is similar to identifying first and last element in a collection.
+        Instead of using first and last properties, use even and odd properties.
+      </p>
+    </div>
+  </div>
+</ion-content><ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+<ion-content>
+
+  <h1 no-margin>Angular ngFor trackby </h1>
+  <div padding>
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dEIg-PR4Tew" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>Angular ngFor trackby</h2>
+      <p>
+        In this video we will discuss
+        <br> 1. Using trackyBy with ngFor directive
+        <br> 2. How to get the index of an item in a collection
+        <br> 3. Identifying the first and the last elements in a collection
+        <br> 4. Identifying even and odd elements in a collection
+      </p>
+
+
+      <h2>Using trackyBy with ngFor directive : </h2>
+
+      <p>
+        ngFor directive may perform poorly with large lists A small change to the list like, adding a new item or removing an existing
+        item may trigger a cascade of DOM manipulations
+      </p>
+
+      <p>
+        For example, consider this code in employeeList.component.ts
+      </p>
+
+      <p>
+        The constructor() initialises the employees property with 4 employee objects getEmployees() method returns another list of
+        5 employee objects (The 4 existing employees plus a new employee object)
+      </p>
+
+      <p>
+        Now look at this code in employeeList.component.html
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" rows="10" cols="65">
+          <table> 
+            <thead> 
+              <tr> 
+              </tr> 
+            </thead> 
+            <tbody> 
+              <tr *ngFor='let employee of employees'> 
+              </tr> 
+              <tr *ngIf="!employees || employees.length==0">
+                <td colspan="5"> No employees to display 
+
+                </td> 
+              </tr> 
+            </tbody> 
+          </table> 
+          <br> 
+          
+          <button (click)='getEmployees()'>Refresh Employees</button>
+
+        </textarea>
+      </expandable>
+    </div>
+    <div class="fullpage_content">
+      <p>
+        1. At the moment we are not using trackBy with ngFor directive
+        <br> 2. When the page initially loads we see the 4 employees
+        <br> 3. When we click "Refresh Employees" button we see the fifth employee as well
+        <br> 4. It looks like it just added the additional row for the fifth employee.
+        <br> That's not true, it effectively teared down all the [tr] and [td] elements of all the employees and recreated them.
+        <br> 5. To prove this launch browser developer tools by pressing F12.
+        <br> 6. Click on the "Elements" tab and expand the [table] and then [tbody] elements
+        <br> 7. At this point click the "Refresh Emplyees" button and you will notice all the [tr] elements are briefly highlighted
+        indicating they are teared down and recreated.
+        <br>
+      </p>
+
+      <p>
+        This happens because Angular by defualt keeps track of objects using the object references. When we click the "Refresh Employees"
+        button we get different object references and as a result Angular has no choice but to tear down all the old DOM
+        elements and insert the new DOM elements.
+      </p>
+
+      <p>
+        Angular can avoid this churn with trackBy. The trackBy function takes the index and the current item as arguments and returns
+        the unique identifier by which that item should be tracked. In our case we are tracking by Employee code. Add this
+        method to employeeList.component.ts.
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="65" rows="5">
+                trackByEmpCode(index: number, employee: any): string 
+                { 
+                  return employee.code; 
+                }
+            </textarea>
+      </expandable>
+
+      <p>
+        Make the following change in employeeList.component.html : Notice along with ngFor we also specified trackBy
+      </p>
+
+      <textarea class="codepart" cols="65" rows="1">
+              <tr *ngFor='let employee of employees; trackBy:trackByEmpCode'></tr>
+          </textarea>
+
+      <p>
+        At this point, run the application and lauch developer tools. When you click "Refresh Employees" first time, only the the
+        row of the fifth employee is highlighted indicating only that[tr] element is added. On subsequent clicks, nothing
+        is highlighted meaning none of the [tr] elements are teared down or added as the employees collection has not changed.
+        Even now we get different object references when we click "Refresh Employees" button, but as Angular is now tracking
+        employee objects using the employee code instead of object references, the respective DOM elements are not affected.
+      </p>
+
+      <p>
+        How to get the index of an item in a collection : In the example below, we are using the index property of the NgFor directive
+        to store the index in a template input variable "i". The variable is then used in the [td] element where we want
+        to display the index. We used the let keyword to create the template input variable "i".
+      </p>
+
+      <p>
+        The index of an element is extremely useful when creating the HTML elements dynamically. We will discuss creating HTML elements
+        dynamically in our upcoming videos
+      </p>
+
+      <p>
+        <textarea class="codepart" cols="65" rows="2">
+            <tr *ngFor='let employee of employees; let i=index'>
+        </textarea>
+      </p>
+      <p>
+        Identifying the first and the last element in a collection : Use the first and last properties of the ngFor directive to
+        find if an element is the first or last element respectively.
+      </p>
+
+      <p>
+        Identifying even and odd element in a collection : This is similar to identifying first and last element in a collection.
+        Instead of using first and last properties, use even and odd properties.
+      </p>
+    </div>
+  </div>
+</ion-content>

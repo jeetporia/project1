@@ -1,0 +1,162 @@
+<ion-header>
+    <common-header>Angular 2</common-header>
+</ion-header>
+<ion-content>
+    <h1 no-margin>Two Way Data Binding </h1>
+    <div padding>
+
+        <div class="resp-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/aBf1nLGuVz8" frameborder="0" allow="autoplay; encrypted-media"
+                allowfullscreen></iframe>
+        </div>
+
+        <div class="content1">
+            <p>
+                In this video we will discuss Two way Data Binding in Angular 2.
+            </p>
+
+            <p>
+                Consider the following code in app.component.ts
+            </p>
+
+            <expandable showText="See the code" hideText="Hide the code">
+                <textarea class="codepart" cols="50" rows="10">
+                    import { Component } from '@angular/core'; 
+                    
+                    @Component({ 
+                        selector: 'my-app', 
+                        template: ` Name : 
+                        <input [value]='name'>
+                        <br>
+                        You entered : {{name}} ` 
+                    }) 
+                    export class AppComponent { 
+                        name: string = 'Tom'; 
+                    }
+               </textarea>
+            </expandable>
+            <p>
+                <textarea class="codepart" cols="50" rows="1">
+                    <input [value]='name'>
+               </textarea>
+            </p>
+            <p>
+                Binds component class "name" property to the input element’s value property
+            </p>
+
+            <p>
+                You entered : [name]
+                <br> Interpolation displays the value we have in "name" property on the web page
+            </p>
+
+            <p>
+                At the moment when we change the value in the textbox, that changed value is not reflected in the browser. One way to achieve
+                this is by binding to the input event of the input control as shown below.
+            </p>
+
+            <p>
+                <textarea class="codepart" cols="60" rows="3">
+                   Name : <input [value]='name' (input)='name = $event.target.value'>
+
+                   You entered : name
+                </textarea>
+                <br>
+            </p>
+        </div>
+        <div class="fullpage_content">
+            <p>
+                At this point, as we type in the textbox, the changed value is displayed on the page.
+            </p>
+
+            <p>
+                So let's understand what is happening here. Conside this code
+            </p>
+
+            <p>
+                <textarea class="codepart" cols="60" rows="3">
+                    Name : <input [value]='name' (input)='name = $event.target.value'> 
+                    <br> 
+                    You entered : name
+              </textarea>
+            </p>
+            <p>
+                [value]='name' :
+                <br>This property binding flows data from the component class to element property
+            </p>
+
+            <p>
+                (input)='name = $event.target.value' :
+                <br> This event binding flows data in the opposite direction i.e from the element to component class property
+                "name"
+            </p>
+
+            <p>
+                $event -
+                <br> Is exposed by angular event binding, and contains the event data. To retrieve the value from the input element
+                use - $event.target.value.
+            </p>
+
+            <p>
+                name = $event.target.value -
+                <br> This expression updates the value in the name property in the component class
+            </p>
+
+            <p>
+                You entered : {{name}} -
+                <br> This interpolation expression will then display the value on the web page
+            </p>
+
+            <p>
+                So in short two-way data binding in Angular is a combination of both Property Binding and Event Binding. To save a few keystrokes
+                and simplify two-way data binding angular has provided ngModel directive. So with ngModel directive we can
+                rewrite the follwing line of code
+            </p>
+
+            <p>
+                <textarea class="codepart" cols="65" rows="1">
+                Name : <input [value]='name' (input)='name = $event.target.value'>
+            </textarea>
+            </p>
+
+            <p>Like</p>
+            <textarea class="codepart" cols="65" rows="1">
+            Name : <input [(ngModel)]='name'>
+            </textarea>
+
+            <p>
+                At this point if you view the page in the browser, you will get the following error
+                <br>
+                <b>
+                    Template parse errors: Can't bind to 'ngModel' since it isn't a known property of 'input'
+                </b>
+            </p>
+            <p>
+                This is because ngModel directive is, in an Angular system module called FormsModule. For us to be able to use ngModel directive
+                in our root module - AppModule, we will have to import FormsModule first.
+            </p>
+            <h2>
+                Steps to import FormsModule into our AppModule
+            </h2>
+            <p>
+                1. Open app.module.ts file
+                <br> 2. Include the following import statement in it
+                <br>
+                <textarea class="codepart" rows="1" cols="65">
+                    import { FormsModule } from '@angular/forms';
+                    </textarea>
+                <br> 3. Also, include FormsModule in the 'imports' array of @NgModule imports: [BrowserModule, FormsModule]
+            </p>
+            <p>
+                With these changes, reload the web page and it works as expected.
+            </p>
+
+            <p>
+                So here is the syntax for using two-way data binding in Angular [input [(ngModel)]='name']
+            </p>
+            <p>
+                The square brackets on the outside are for property binding The parentheses on the inside are for event binding To easily
+                remember this syntax, compare it to a banana in a box [()]
+            </p>
+        </div>
+    </div>
+</ion-content>

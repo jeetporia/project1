@@ -1,0 +1,168 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+<ion-content>
+
+  <h1 no-margin>Container and Nested Components in Angular 2 </h1>
+  <div padding>
+    <div class="resp-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/vk2kTDdh5wc" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+      <h2>Container and Nested Components </h2>
+      <p>
+        In this video and in the next few videos we will discuss
+        <br> 1. What is a nested component
+        <br> 2. What is a container component
+        <br> 3. Passing data from the nested component to container component
+        <br> 4. Passing data from the container component to nested component
+        <br> 5. Along the way we will discuss component input and output properties
+        <br> 6. Creating custom events using EventEmitter class
+        <br> 7. What is ng-container directive and it's use
+      </p>
+
+      <p>
+        What is a container and nested component : In this example we have 2 components
+        <br> 1. One of the component displays the list of employees. We have already built this component in our previous videos
+        in this series. We named this component EmployeeListComponent.
+      </p>
+
+      <p>
+        2. The other component displays the radio buttons and the count of employees. We have not created this component yet. We
+        will create it in this video. We will call this component EmployeeCountComponent.
+      </p>
+    </div>
+
+    <div class="fullpage_content">
+      <p>
+        3. We will nest EmployeeCountComponent in EmployeeListComponent. So EmployeeCountComponent becomes the nested component or
+        child component and EmployeeListComponent becomes the container component or parent component.
+      </p>
+
+      <p>
+        We have already implemented the required code for EmployeeListComponent in our previous videos
+      </p>
+
+      <p>
+        Now let's create the EmployeeCountComponent. Add a new TypeScript file to the employee folder. Name it employeeCount.component.ts.
+        Copy and paste the following code.
+      </p>
+
+      <p>
+        employeeCounts.component.ts
+      </p>
+
+      <p>
+        We have set select='employee-count'. We can use this selector as a directive where we want to use this component. We are
+        going to nest this component inside EmployeeListComponent using employee-count selector as a directive.
+      </p>
+
+      <p>
+        We have 3 properties (all, male and Female). At the moment we have hard coded the values. In our next video we will discuss
+        how to pass the values for these properties from the container component i.e from the EmployeeListComponent
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" rows="10" cols="65">
+        import { Component } from '@angular/core'; 
+        
+        @Component({ 
+          selector: 'employee-count', 
+          templateUrl: 'app/employee/employeeCount.component.html', 
+          styleUrls: ['app/employee/employeeCount.component.css'] 
+        }) 
+
+        export class EmployeeCountComponent { 
+          all: number = 10; 
+          male: number = 5; 
+          female: number = 5; 
+        }
+    </textarea>
+      </expandable>
+
+      <p>
+        Add a new StyleSheet to the employee folder. Name it employeeCount.component.css. Copy and paste the following style class.
+      </p>
+
+      <p>
+        employeeCount.component.css
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" cols="65" rows="5">
+        .radioClass { 
+          color: #369; 
+          font-family: Arial, Helvetica, sans-serif; 
+          font-size: large; 
+        }
+    </textarea>
+      </expandable>
+
+      <p>Now let's add the view template for EmployeeCountComponent. Add a new HTML page to the employee folder. Name it employeeCount.component.html.
+        Copy and paste the following html.
+      </p>
+
+      <p>
+        employeeConunt.component.html
+      </p>
+
+      <p>
+        Notice we have 3 radio buttons and bound them to the 3 properties (all, male, female) we have in the component class. We
+        are using interpolation for data-binding.
+      </p>
+
+      <expandable hideText="Hide the code" showText="See the code">
+        <textarea class="codepart" cols="65" rows="10">
+            <span class="radioClass">
+            Show : 
+            </span> 
+            <input name='options' type='radio' value='All'> 
+            
+            <span class="radioClass">
+            {'All(' + all + ')'}
+            </span> 
+            
+            <input name='options' type='radio' value='Male'>
+            <span class="radioClass">
+            {'Male(' + male + ')'}
+            </span> 
+            
+            <input name='options' type='radio' value='Female'> 
+            
+            <span class="radioClass">
+            {'Female(' + female + ')'}
+            </span>
+        </textarea>
+      </expandable>
+
+      <p>
+        Nest EmployeeCountComponent in EmployeeListComponent component. To do this, use EmployeeCountComponent selector (employee-count)
+        as a directive [employee-count][/employee-count] on EmployeeListComponent component as shown below.
+      </p>
+
+      <p>
+        <textarea class="codepart" cols="65" rows="2">
+          <employee-count></employee-count>
+        </textarea>
+      </p>
+
+      <p>
+        Finally, declare EmployeeCountComponent in module.ts file. Please make sure you import the component first and then add it
+        to the declarations array of @NgModule decorator.
+      </p>
+
+      <p>
+        At this point, run the project and you should see employee count radio buttons and the employee list.
+      </p>
+
+      <p>
+        At the moment the employee counts are hard coded with in the EmployeeCountComponent. In our next video we will discuss how
+        to pass the count values from the container component i.e from the EmployeeListComponent to the nested component
+        i.e EmployeeCountComponent.
+      </p>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,159 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+
+<ion-content>
+
+  <h1 no-margin>Styling </h1>
+  <div padding>
+  
+    <div class="resp-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/vB5ihfGp1-I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+       <h2>Styling Angular 2 Components</h2> 
+      <p>
+        In this video we will discuss the different options available to apply styles to Angular Components. 
+      </p> 
+      
+      <p>
+        The following are the different options available to style this "employee component"
+      </p>
+
+      <p>
+        Option 1: Specify the following table and td styles in external stylesheet - styles.css
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" rows="5" cols="50">
+          table { 
+            color: #369; 
+            font-family: Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            border-collapse: collapse; 
+          }
+          td { 
+            border: 1px solid black;
+          }
+        </textarea>
+      </expandable>
+      
+      <div class="fullpage_content" style="padding-top: 4%;">
+        <h2>Advantages</h2>
+       
+        1. Visual Studio editor features (Intellisense, Code completion & formatting) are available.
+        <br>
+        2. Application maintenance is also easy as we only have to change the styles in one place if we need to change them for any reason.
+       
+
+      </div>
+    </div> 
+    <div class="fullpage_content">
+        <h2>Disadvantages</h2>
+            1. The Stylesheet that contains the styles must be referenced for the component to be reused.
+            <br>
+            2. Since styles.css is referenced in index.html page, these styles may affect the table and td elements in other components,
+            and you may or may not want this behaviour.
+      
+
+        <p>
+            Option 2 : Specify the styles inline in the component HTML file as shown below.
+        </p>
+
+        <expandable showText="See the code" hideText="Hide the text">
+          <textarea class="codepart" cols="50" rows="10">
+              <table style="color: #369;font-family: Arial, Helvetica, sans-serif;
+               font-size:large;border-collapse: collapse;"> 
+               <tr> 
+                 <td style="border: 1px solid black;">First Name</td>
+                 <td style="border: 1px solid black;">{{firstName}}</td> 
+              </tr> 
+              <tr> 
+                <td style="border: 1px solid black;">Last Name</td> 
+                <td style="border: 1px solid black;">{{lastName}}</td> 
+              </tr> 
+              <tr> 
+                <td style="border: 1px solid black;">Gender</td> 
+                <td style="border: 1px solid black;">{{gender}}</td> 
+              </tr> 
+              <tr> 
+                <td style="border: 1px solid black;">Age</td> 
+                <td style="border: 1px solid black;">{{age}}</td> 
+              </tr> 
+              </table>
+          </textarea>
+        </expandable>
+      <h2>Advantages</h2>
+      <p>
+        1. Visual Studio editor features (Intellisense, Code completion & formatting) are available.<br> 
+        2. Component can be easily reused as the styles are defined inline <br>
+        3. Styles specified using this approach are local to the component and don't 
+        collide with styles used elsewhere in the application.<br>
+      </p>
+
+      <h2>
+        Disadvantages
+      </h2>
+      <p>
+         1. Application maintenance is difficult. For example, 
+         if we want to change the <td> border colour to red we have to change 
+         it in several places.
+      </p>
+
+      <p>
+          Option 3 : Specify the styles in the component html file using style tag as shown below
+      </p>
+
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="50" rows="10">
+            <style>
+            table {
+              color: #369; 
+              font-family: Arial, Helvetica, sans-serif;
+              font-size: large; 
+              border-collapse: collapse; 
+            } 
+            td { 
+              border: 1px solid black; 
+            } 
+            </style> 
+            <table> 
+            <tr> 
+              <td>First Name</td> 
+              <td>{firstName}</td> 
+            </tr> 
+            <tr> 
+              <td>Last Name</td> 
+              <td>{lastName}</td> 
+            </tr> 
+            <tr> 
+              <td>Gender</td> 
+              <td>{gender}</td> 
+            </tr> 
+            <tr> 
+              <td>Age</td> 
+              <td>{age}</td> 
+            </tr> 
+          </table>
+        </textarea>
+      </expandable>
+      <h2>
+        Advantages
+      </h2>
+      <p>
+          1. Component can be easily reused as the styles are defined inline with in the component itself <br>
+          2. Application maintenance is also easy as we only have to change the styles in one place <br>
+          3. Visual Studio editor features (Intellisense, Code completion and formatting) are available <br>
+          4. Styles specified using this approach are local to the component and don't collide with styles 
+          used elsewhere in the application.
+      </p>
+      <p>
+          Option 4 : Specify the styles in the component TypeScript file using the @component 
+          decorator styles property as shown below. Notice the styles property takes an array 
+          of strings containing your styles
+      </p>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,176 @@
+<ion-header>
+    <common-header>Angular 2</common-header>
+  </ion-header>
+  
+  
+  <ion-content>
+  
+    <h1 no-margin>Property Binding </h1>
+    <div padding>
+    
+      <div class="resp-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RGYfTx9AAQA" frameborder="0" 
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+  
+      <div class="content1">
+         <h2>Property Binding in Angular 2</h2> 
+  
+         <p>
+            In this video we will discuss Property binding in Angular with examples. 
+         </p>
+  
+         <p>
+            In Part 8, we discussed we can use interpolation to bind component class 
+            properties to view template. Another option to achieve exactly the same thing is 
+            by using Property binding.
+         </p>
+         
+         <p>
+            In our previous video we have bound imagePath property of the component class to 
+            img element src property using interpolation as shown below.
+        </p>
+        <expandable showText="See the code" hideText="Hide the code">
+            <textarea class="codepart" cols="50" rows="1">
+                <img src='{imagePath}'/>
+            </textarea>
+        </expandable>
+        
+         <p>
+            We can rerwrite the above example, using property binding as shown below. 
+            Notice the [img] element src property is in a pair of square brackets, 
+            and the component class property is in quotes.
+         </p>
+          <expandable showText="See the code" hideText="Hide the code">
+              <textarea class="codepart" cols="50" rows="1">
+                  <img [src]='imagePath'/>
+              </textarea>
+          </expandable>
+         </div>
+         
+         <div class="fullpage_content">
+          <p>
+              Both Interpolation and Property binding flows a value in one direction, 
+              i.e from a component's data property into a target element property.
+          </p>
+          
+          <h2>
+            difference between Interpolation and Property binding
+          </h2>
+
+          <p>
+              Interpolation is a special syntax that Angular converts into a property binding. 
+              <br>
+              Interpolation is just a convenient alternative to property binding.
+              <br>
+              In some cases like when we need to concatenate strings we have to use 
+              interpolation instead of property binding as shown in the example below. 
+              
+          </p>
+          <expandable showText="See the code" hideText="Hide the code">
+            <textarea class="codepart" cols="50" rows="1">
+                <img src='http://www.pragimtech.com/{{imagePath}}' />
+            </textarea>
+          </expandable>
+        
+          <p>
+              When setting an element property to a non-string data value, you must use property binding. In the following example, 
+              we are disabling a button by binding to the boolean property isDisabled.
+          </p>
+
+          <expandable showText="See the code" hideText="Hide the code">
+          <textarea class="codepart" cols="50" rows="1">
+              <button [disabled]='isDisabled'>Click me</button>
+          </textarea>
+          </expandable>
+
+          <p>
+              If we use interpolation instead of property binding, 
+              the button is always disabled irrespective of isDisabled class property value
+          </p>
+
+          <expandable showText="See the code" hideText="Hide the text">
+            <textarea class="codepart" rows="1" cols="50">
+                <button disabled='{isDisabled}}'>Click me</button>
+            </textarea>
+          </expandable>
+
+          <p>
+              Some important points to keep in mind when using Property binding
+          </p>
+
+          <p>
+              Remember to enclose the property name with a pair of square brackets. 
+              If you omit the bracke Angular treats the string as a constant and
+              initializes the target property with that string.
+          </p>
+
+          <expandable showText="See the code" hideText="Hide the code">
+              <textarea class="codepart" cols="50" rows="1">
+                  <span [innerHTML]='pageHeader'></span>
+              </textarea>
+          </expandable>
+
+          <p>
+              With Property binding we enclose the element property name in square brackets 
+          </p>
+              <expandable showText="See the code" hideText="Hide the text">
+                <textarea class="codepart" cols="50" rows="1">
+                    <button [disabled]='isDisabled'>Click me</button>
+                </textarea>
+              </expandable> 
+        <p>
+            We can also use the alternate syntax with bind- prefix. This is known as canonical form
+        </p>
+
+          <expandable showText="See the code" hideText="Hide the text">
+              <textarea class="codepart" cols="50" rows="1">
+                  <button bind-disabled='isDisabled'>Click me</button>
+              </textarea>
+          </expandable>
+
+          <p>
+            From security standpoint, Angular data binding sanitizes malicious content before displaying it on the browser. 
+            Both interpolation and property binding protects us from malicious content.
+          </p>
+
+          In the example below we are using interpolation. Notice the malicious usage of [script] tag.
+          <expandable showText="See the code" hideText="Hide the code">
+              <textarea class="codepart" cols="50" rows="10">
+                @Component({ 
+                    selector: 'my-app', 
+                    template: '<div>
+                                    {badHtml}}
+                        </div>' 
+                }) 
+                export class AppComponent { 
+                    badHtml: string = 'Hello <script>alert("Hacked");</script> World'; 
+                }
+              </textarea>
+          </expandable>
+          <p>
+            Angular interpolation sanitizes the malicious content and displays the following in the browser
+          </p>
+          <expandable showText="See the code" hideText="Hide the test">
+              <textarea class="codepart" cols="50" rows="1">
+                Hello <script>alert("Hacked");</script> Worldsss
+              </textarea>
+          </expandable>
+
+          <p>
+            In this example below we are using property binding. 
+          </p>
+          <expandable showText="See the code" hideText="Hide the test">
+            <textarea class="codepart" cols="50" rows="1">
+                   <div [innerHtml]="badHtml"></div>'  
+            </textarea>
+          </expandable>
+          <p>
+                Property binding sanitizes the malicious content slightly differently and we get the 
+                following output, but the important point to keep in mind is both the techniques protect 
+                us from malicious content and render the content harmlessly. Hello alert("Hacked"); World
+          </p>
+        </div>
+    </div>
+  </ion-content>
+  

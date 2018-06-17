@@ -1,0 +1,32 @@
+.resp-container {
+    padding-left: 2%;
+    position: relative;
+    border: 0;
+    margin: auto;
+    padding-right: 2%;
+    float: right;
+}
+.content1{
+    float: left;
+    position: relative;;
+    padding-left: 2%;
+    width: 45%;
+    margin: auto;
+    text-align: justify;
+    border : 12px black;
+}
+.fullpage_content{
+    padding-top: 0%;
+    padding-left : 2%;
+    padding-right: 2%;
+    text-align: justify;
+    float:left;
+    position: relative;
+    //width:100%;
+    margin: auto;
+}
+.codepart{
+    background:black; 
+    color:aliceblue;
+    position: relative;
+}

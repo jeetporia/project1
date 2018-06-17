@@ -1,0 +1,136 @@
+<ion-header>
+  <common-header>Angular 2</common-header>
+</ion-header>
+
+
+<ion-content>
+
+  <h1 no-margin>Angular 2 Templates </h1>
+  <div padding>
+  
+    <div class="resp-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/pX9fCcqbCl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="content1">
+       <h2>Angular 2 Template vs TemplateUrl</h2> 
+      <p>
+        In this video we will discuss template and templateurl properties of the Component decorator.
+       </p> 
+        
+        <p>
+          In Part 4, we have used an inline view template. Notice the code we have implemented in app.component.ts file. 
+          We have embedded the view template inline in the .ts file.
+        </p>
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" cols="50" rows="5">
+          import { Component } from '@angular/core';
+          @Component({ 
+            selector: 'my-app', 
+            template: `Hello {{ name }}`
+           }) 
+          export class AppComponent {
+             name: string = 'Angular';
+             }
+        </textarea>
+      </expandable>
+      <p>
+        The view template is inline in a pair of backtick characters. 
+        The first question that comes to our mind is can't we include the HTML 
+        in a pair of single or double quotes. The answer is "YES" we can as long 
+        as the HTML is in a single line. So this means the above code can be
+        rewritten using a pair of single quotes as shown below.     
+       </p>
+
+       <expandable showtext="See the code" hideText="Hide the code">
+         <textarea class="codepart" cols="50" rows="1">
+           template: '[h1]Hello {{name }}[/h1]'
+         </textarea>
+       </expandable>
+    </div>
+  <div class="fullpage_content">
+    <p>
+      We can also replace the pair of single quotes with a pair of double quotes 
+      as shown below, and the application still continues to work exactly the same 
+      way as before.
+    </p>
+
+        <expandable showText="See the code" hideText="Hide the code">
+          <textarea class="codepart" rows="1" cols="50">
+              template: "[h1]Hello {{name }}[/h1]"
+          </textarea>  
+        </expandable>
+    <p>
+        The obvious next question that comes to our mind is when should we use backticks
+         instead of single or doublequotes If you have the HTML in more than one line, 
+         then you have to use backticks instead of single or double quotes as shown below. 
+         If you use single or double quotes instead of backticks you will get an error.
+    </p>
+
+    <expandable showText="See the code" hideText="Hide the code">
+      <textarea class="codepart" rows="3" cols="50">
+        template: `[h1] 
+                       Hello {{name }} 
+                       [/h1]`
+      </textarea>
+    </expandable>
+
+    <p>
+        Instead of using an inline view template, you can have it in a separate HTML file.
+        Here are the steps to have the view template in a separate HTML file <br>
+        Step 1 : Right click on the "app" folder and add a new HTML file. 
+        <br>
+        <br>Name it "app.component.html".
+    </p>
+
+    <p>
+        Step 2 : Include the following HTML in "app.component.html" 
+    </p>
+      <expandable showText="See the code" hideText="Hide the code">
+        <textarea class="codepart" rows="3" cols="50">
+            [h1] 
+              Hello {{name}}
+            [/h1]
+        </textarea>
+      </expandable>
+
+    <p>
+        Step 3 : In "app.component.ts", reference the external view template using templateUrl 
+        property as shown below. Notice instead of the "template" property we are using 
+        "templateUrl" property. Please note that templateUrl path is relative to index.html
+    </p>
+
+    <expandable showText="See the code" hideText="Hide the code">
+      <textarea class="codepart" rows="3" cols="50">
+          import { Component } from '@angular/core'; 
+          @Component({ 
+            selector: 'my-app', 
+            templateUrl: 'app/app.component.html'
+          }) 
+          export class AppComponent
+          { 
+            name: string = "Angular"; 
+          }
+      </textarea>
+    </expandable>
+    
+    <p>
+        What are the differences between template and templateUrl properties and when to use 
+        one over the other Angular2 recommends to extract templates into a separate file, if 
+        the view template is longer than 3 lines. Let's understand why is it better to extract
+        a view template into a seprate file, if it is longer than 3 lines.
+    </p>
+
+    <p>
+        With an inline template <br>
+        1. We loose Visual Studio editor intellisense, code-completion and formatting features.<br>
+        2. TypeScript code is not easier to read and understand when it is mixed with the inline template HTML.
+    </p>
+
+    <p>
+        With an external view template <br>
+        1. We have Visual Studio editor intellisense, code-completion and formatting features and 2. Not only the code in "app.component.ts" is clean, it is also easier to read and understand
+    </p>
+    </div>
+  </div>
+</ion-content>

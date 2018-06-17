@@ -1,0 +1,122 @@
+<ion-header>
+    <common-header>Angular 2</common-header>
+  </ion-header>
+  
+  
+  <ion-content>
+  
+    <h1 no-margin>Style Binding </h1>
+    <div padding>
+  
+      <div class="resp-container">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/dIn7E1P5boE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+  
+      <div class="content1">
+        <h2>Style Binding in Angular 2</h2>
+  
+        <p>
+            In this video we will discuss Style binding in Angular with examples.
+        </p>
+  
+        <p>
+            Setting inline styles with style binding is very similar to setting CSS classes with 
+            class binding. Please wtach Class binding video from Angular 2 tutorial before 
+            proceeding with this video.
+        </p>
+
+        <p>
+            Notice in the example below, we have set the font color of the button using the
+            style attribute.
+        </p>
+  
+        <expandable showText="See the code" hideText="Hide the code">
+          <textarea class="codepart" cols="70" rows="5">
+              import { Component } from '@angular/core'; 
+              
+              @Component({ 
+                selector: 'my-app', 
+                template: ` 
+                <button style='color:red' [style.font-weight]="isBold ? 'bold' : 'normal'">
+                          My Button 
+                </button> ` 
+              }) 
+              export class AppComponent { 
+                isBold: boolean = true; 
+              }
+           </textarea>
+        </expandable>
+       
+        <p>
+            The following example sets a single style (font-weight). 
+            If the property 'isBold' is true, then font-weight style is set to bold else normal.
+        </p>
+  
+        <expandable showText="See the code" hideText="Hide the code">
+          <textarea class="codepart" cols="70" rows="5">
+  
+            import { Component } from '@angular/core'; 
+            
+            @Component({ 
+              selector: 'my-app', 
+              template: ` <button class='colorClass'>My Button</button> ` 
+            }) 
+            export class AppComponent { 
+  
+            }
+           </textarea>
+        </expandable>
+       
+        </div>
+
+        <div class="fullpage_content">
+        <p>
+          Style  property name can be written in either dash-case or camelCase. 
+          For example, font-weight style can also be written using camel 
+          case - fontWeight.
+        </p>
+        <p>
+            Some styles like font-size have a unit extension. 
+            To set font-size in pixels use the following syntax. 
+            This example sets font-size to 30 pixels. 
+        </p>
+
+        <expandable showText="See the code" hideText="Hide the code">
+          <textarea class="codepart" cols="70" rows="10">
+              import { Component } from '@angular/core'; 
+              
+              @Component({ 
+                selector: 'my-app', 
+                template: ` <button style='color:red' [style.font-size.px]="fontSize">
+                              My Button 
+                            </button> ` 
+              }) 
+              export class AppComponent { 
+                fontSize: number = 30; 
+              }
+          </textarea>
+        </expandable>
+
+        <p>
+            To set multiple inline styles use NgStyle directive<br> 
+            1. Notice the color style is added using the style attribute<br> 
+            2. ngStyle is binded to addStyles() method of the AppComponent class<br> 
+            3. addStyles() method returns an object with 2 key/value pairs. 
+            The key is a style name, and the value is a value for the respective style 
+            property or an expression that returns the style value. <br>
+            4. let is a new type of variable declaration in JavaScript. <br>
+            5. let is similar to var in some respects but allows us to avoid some of the 
+            common “gotchas” that we run into when using var.<br> 
+            6. The differences between let and var are beyond the scope of this video. 
+            For our example, var also works fine.<br> 
+            7. As TypeScript is a superset of JavaScript, it supports let
+        </p>
+
+        <expandable showText="See the code" hideText="Hide the code">
+            <textarea class="codepart" cols="70" rows="10">
+                import { Component } from '@angular/core'; @Component({ selector: 'my-app', template: ` [button style='color:red' [ngStyle]="addStyles()"]My Button[/button] ` }) export class AppComponent { isBold: boolean = true; fontSize: number = 30; isItalic: boolean = true; addStyles() { let styles = { 'font-weight': this.isBold ? 'bold' : 'normal', 'font-style': this.isItalic ? 'italic' : 'normal', 'font-size.px': this.fontSize }; return styles; } }
+            </textarea>
+        </expandable>
+      </div>
+    </div>
+  </ion-content>
